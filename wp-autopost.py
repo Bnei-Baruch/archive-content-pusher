@@ -24,7 +24,7 @@ HTML = """
                 <tr>
                 <td>
                 <span class="podPress_content"> \
-                    <img src="http://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
+                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
                         border="0" align="top" class="podPress_imgicon" \
                         alt="icon for podpress">&nbsp;<strong>Видео (рус.)</strong>: \
                     <a rel="nofollow" href="{{ lesson_rus_video }}">\
@@ -37,7 +37,7 @@ HTML = """
                 <td>&nbsp;</td>
                 <td>
                 <span class="podPress_content">\
-                    <img src="http://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
+                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
                         border="0" align="top" class="podPress_imgicon" \
                         alt="icon for podpress">&nbsp;<strong>Аудио (рус.)</strong>: \
                         <a rel="nofollow" href="{{ lesson_rus_audio }}">\
@@ -51,7 +51,7 @@ HTML = """
                 <tr>
                 <td>
                 <span class="podPress_content">\
-                    <img src="http://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
+                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
                         border="0" align="top" class="podPress_imgicon" \
                         alt="icon for podpress">&nbsp;<strong>Видео (ивр.)</strong>: \
                         <a rel="nofollow" href="{{ lesson_heb_video }}">\
@@ -64,7 +64,7 @@ HTML = """
                 <td>&nbsp;</td>
                 <td>
                 <span class="podPress_content">\
-                    <img src="http://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
+                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
                         border="0" align="top" class="podPress_imgicon" \
                         alt="icon for podpress">&nbsp;<strong>Аудио (ивр.)</strong>: \
                         <a rel="nofollow" href="{{ lesson_heb_audio }}">\
@@ -113,7 +113,8 @@ def main():
     logger.info("WP Autpost Loaded")
     wp_rest = wp_rest_api.WpRESTApi(logger, HOST_URL)
     wp_rest.validate_token()
-    wp_rest.create_post(title="Test Post", content=post_content, status="publish")
+    today = datetime.datetime.now().strftime('%d.%m.%y')
+    wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish")
 
 
 if __name__ == "__main__":
