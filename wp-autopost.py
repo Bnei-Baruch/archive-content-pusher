@@ -3,14 +3,12 @@
     WordPress auto-post script, using JWT auth and wp-rest api
 """
 import datetime
+import random
 import sys
 
-import jinja2
-import random
-import uuid
+from jinja2 import Template
 
 import daily_lesson
-from jinja2 import Template
 import wp_rest_api
 from logger import Logger
 

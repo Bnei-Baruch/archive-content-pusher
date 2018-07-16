@@ -1,11 +1,16 @@
+import os
+
 import requests
 from requests import HTTPError
 
-HOST_URL = "http://blogd2.kbb1.com"
+
+HOST_URL = os.getenv("HOST_URL", "http://blogd2.kbb1.com")
 API_HOST_URL = HOST_URL + "/wp-json"
 JWT_ENTRY_POINT = "jwt-auth/v1/token"
 API_PREFIX = "wp"
 API_VERSION = "v2"
+USERNAME = os.getenv("USERNAME")
+PASSWORD = os.getenv("PASSWORD")
 
 
 class WpRESTApi:
@@ -14,8 +19,8 @@ class WpRESTApi:
         self.url = url
         self.auth_token = None
 
-        res = requests.post("/".join([API_HOST_URL, JWT_ENTRY_POINT]), {'username': 'wp-autoposter',
-                                                                        'password': 'f)CkJlgdM*vFnAGxvM1j2R64'})
+        res = requests.post("/".join([API_HOST_URL, JWT_ENTRY_POINT]),
+                            {'username': USERNAME, 'password': PASSWORD})
         res.raise_for_status()
         self.auth_token = res.json()['token']
         self.logger.info("JWT response: {}".format(res.json()))

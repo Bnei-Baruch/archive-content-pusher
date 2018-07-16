@@ -1,8 +1,11 @@
+import os
+
 import requests
 
-DAILY_LESSON_ENDPOINT = "https://archive.kbb1.com/backend/latestLesson"
-CONTENT_UNIT_ENDPOINT = "https://archive.kbb1.com/backend/content_units"
-CDN_ENDPOINT = "https://cdn.kabbalahmedia.info"
+ARCHIVE_BACKEND_URL = os.getenv("ARCHIVE_BACKEND_URL", "https://kabbalamedia.info/backend")
+DAILY_LESSON_ENDPOINT = ARCHIVE_BACKEND_URL + "/latestLesson"
+CONTENT_UNIT_ENDPOINT = ARCHIVE_BACKEND_URL + "/content_units"
+CDN_URL = os.getenv("CDN_URL", "https://cdn.kabbalahmedia.info")
 
 
 class DailyLesson:
@@ -26,7 +29,7 @@ class DailyLesson:
             #  Fetching only hebrew and russian media files
             for lang in langs:
                 # building valid urls to media files
-                files = ["/".join([CDN_ENDPOINT, file['id'] + '.' + file['name'].split('.')[-1]])
+                files = ["/".join([CDN_URL, file['id'] + '.' + file['name'].split('.')[-1]])
                          for file in filtered_files if file['language'] == lang]
                 # fetching media files per language
                 files_audio = [file for file in files if file.split('.')[-1] == 'mp3']
