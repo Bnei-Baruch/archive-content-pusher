@@ -1,8 +1,11 @@
-pip-selfcheck.json
-pyvenv.cfg
+.idea/
 
 bin/
 include/
 lib/
 lib64
-.idea/
+
+pip-selfcheck.json
+pyvenv.cfg
+.env
+*.log

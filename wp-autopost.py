@@ -8,13 +8,13 @@ import sys
 
 from jinja2 import Template
 
+import settings
 import daily_lesson
 import wp_rest_api
 from logger import Logger
 
 logger = None
 
-HOST_URL = "http://blogd2.kbb1.com"
 HTML = """
                 <p><span style="text-decoration: underline;"><strong>{{ title }}</strong></span></p>
                 <table border="0">
@@ -109,7 +109,10 @@ def main():
     post_content = lessons_data_to_html(parts)
 
     logger.info("WP Autpost Loaded")
-    wp_rest = wp_rest_api.WpRESTApi(logger, HOST_URL)
+    wp_rest = wp_rest_api.WpRESTApi(logger,
+                                    settings.LAITMAN_RU_URL,
+                                    settings.LAITMAN_RU_USERNAME,
+                                    settings.LAITMAN_RU_PASSWORD)
     wp_rest.validate_token()
     today = datetime.datetime.now().strftime('%d.%m.%y')
     wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish")
