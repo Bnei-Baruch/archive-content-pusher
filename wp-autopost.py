@@ -81,15 +81,14 @@ HTML = """
 def lessons_data_to_html(parts):
     lesson_html = ""
     for index, part in enumerate(parts):
-        # base = int(str(uuid.uuid4().int)[0:4])
         base = random.randint(10000, 100000)
         template = Template(HTML, trim_blocks=True, lstrip_blocks=True)
-        outp = template.render(index=base + index, title=part['name'],
+        outp = template.render(index=base + index,
+                               title=part['name'],
                                lesson_rus_video=part['files_ru']['video'],
                                lesson_rus_audio=part['files_ru']['audio'],
                                lesson_heb_video=part['files_he']['video'],
-                               lesson_heb_audio=part['files_he']['audio'],
-                               )
+                               lesson_heb_audio=part['files_he']['audio'])
         lesson_html += outp
     with open('outp.html', 'w') as f:
         f.write(lesson_html)
@@ -108,7 +107,7 @@ def main():
     logger.info("Processing Lesson parts to HTML...")
     post_content = lessons_data_to_html(parts)
 
-    logger.info("WP Autpost Loaded")
+    logger.info("WP Autopost Loaded")
     wp_rest = wp_rest_api.WpRESTApi(logger,
                                     settings.LAITMAN_RU_URL,
                                     settings.LAITMAN_RU_USERNAME,
