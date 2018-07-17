@@ -16,65 +16,65 @@ from logger import Logger
 logger = None
 
 HTML = """
-                <p><span style="text-decoration: underline;"><strong>{{ title }}</strong></span></p>
-                <table border="0">
-                <tbody>
-                <tr>
-                <td>
-                <span class="podPress_content"> \
-                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
-                        border="0" align="top" class="podPress_imgicon" \
-                        alt="icon for podpress">&nbsp;<strong>Видео (рус.)</strong>: \
-                    <a rel="nofollow" href="{{ lesson_rus_video }}">\
-                    <span id="podPressPlayerSpace_{{ index + 1 }}_PlayLink">Открыть</span></a>    |\
-                    <a href="{{ lesson_rus_video }}" rel="nofollow">Скачать</a><br>\
-                    <span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 1 }}"\
-                        style="display: block;z-index: 1;">&nbsp;</span>\
-                </span>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                <span class="podPress_content">\
-                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
-                        border="0" align="top" class="podPress_imgicon" \
-                        alt="icon for podpress">&nbsp;<strong>Аудио (рус.)</strong>: \
-                        <a rel="nofollow" href="{{ lesson_rus_audio }}">\
-                        <span id="podPressPlayerSpace_{{ index + 2 }}_PlayLink">Открыть</span></a>    |\
-                        <a href="{{ lesson_rus_audio }}" rel="nofollow">Скачать</a><br>\
-                <span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 2 }}" \
-                    style="display: block;z-index: 1;">&nbsp;</span>\
-                </span>
-                </td>
-                </tr>
-                <tr>
-                <td>
-                <span class="podPress_content">\
-                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
-                        border="0" align="top" class="podPress_imgicon" \
-                        alt="icon for podpress">&nbsp;<strong>Видео (ивр.)</strong>: \
-                        <a rel="nofollow" href="{{ lesson_heb_video }}">\
-                        <span id="podPressPlayerSpace_{{ index + 3 }}_PlayLink">Открыть</span></a>    |\
-                        <a href="{{ lesson_heb_video }}" rel="nofollow">Скачать</a><br>\
-                <span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 3 }}" \
-                    style="display: block;z-index: 1;">&nbsp;</span>\
-                </span>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                <span class="podPress_content">\
-                    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
-                        border="0" align="top" class="podPress_imgicon" \
-                        alt="icon for podpress">&nbsp;<strong>Аудио (ивр.)</strong>: \
-                        <a rel="nofollow" href="{{ lesson_heb_audio }}">\
-                        <span id="podPressPlayerSpace_{{ index + 4 }}_PlayLink">Открыть</span></a>    |\
-                        <a href="{{ lesson_heb_audio }}" rel="nofollow">Скачать</a><br>\
-                <span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 4 }}" \
-                    style="display: block;z-index: 1;">&nbsp;</span>\
-                </span>
-                </td>
-                </tr>
-                </tbody>
-                </table>
+<p><span style="text-decoration: underline;"><strong>{{ title }}</strong></span></p>
+<table border="0">
+<tbody>
+<tr>
+<td>
+<span class="podPress_content"> \
+    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
+        border="0" align="top" class="podPress_imgicon" \
+        alt="icon for podpress">&nbsp;<strong>Видео (рус.)</strong>: \
+    <a rel="nofollow" href="{{ lesson_rus_video }}">\
+    <span id="podPressPlayerSpace_{{ index + 1 }}_PlayLink">Открыть</span></a>    |\
+    <a href="{{ lesson_rus_video }}" rel="nofollow">Скачать</a><br>\
+    <span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 1 }}"\
+        style="display: block;z-index: 1;">&nbsp;</span>\
+</span>
+</td>
+<td>&nbsp;</td>
+<td>
+<span class="podPress_content">\
+    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
+        border="0" align="top" class="podPress_imgicon" \
+        alt="icon for podpress">&nbsp;<strong>Аудио (рус.)</strong>: \
+        <a rel="nofollow" href="{{ lesson_rus_audio }}">\
+        <span id="podPressPlayerSpace_{{ index + 2 }}_PlayLink">Открыть</span></a>    |\
+        <a href="{{ lesson_rus_audio }}" rel="nofollow">Скачать</a><br>\
+<span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 2 }}" \
+    style="display: block;z-index: 1;">&nbsp;</span>\
+</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="podPress_content">\
+    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/video_mp4_icon.png" \
+        border="0" align="top" class="podPress_imgicon" \
+        alt="icon for podpress">&nbsp;<strong>Видео (ивр.)</strong>: \
+        <a rel="nofollow" href="{{ lesson_heb_video }}">\
+        <span id="podPressPlayerSpace_{{ index + 3 }}_PlayLink">Открыть</span></a>    |\
+        <a href="{{ lesson_heb_video }}" rel="nofollow">Скачать</a><br>\
+<span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 3 }}" \
+    style="display: block;z-index: 1;">&nbsp;</span>\
+</span>
+</td>
+<td>&nbsp;</td>
+<td>
+<span class="podPress_content">\
+    <img src="https://www.laitman.ru/wp-content/plugins/podpress/images/audio_mp3_icon.png" \
+        border="0" align="top" class="podPress_imgicon" \
+        alt="icon for podpress">&nbsp;<strong>Аудио (ивр.)</strong>: \
+        <a rel="nofollow" href="{{ lesson_heb_audio }}">\
+        <span id="podPressPlayerSpace_{{ index + 4 }}_PlayLink">Открыть</span></a>    |\
+        <a href="{{ lesson_heb_audio }}" rel="nofollow">Скачать</a><br>\
+<span class="podPressPlayerSpace" id="podPressPlayerSpace_{{ index + 4 }}" \
+    style="display: block;z-index: 1;">&nbsp;</span>\
+</span>
+</td>
+</tr>
+</tbody>
+</table>
 """
 
 
@@ -90,7 +90,7 @@ def lessons_data_to_html(parts):
                                lesson_heb_video=part['files_he']['video'],
                                lesson_heb_audio=part['files_he']['audio'])
         lesson_html += outp
-    with open('outp.html', 'w') as f:
+    with open('outp.html', 'w', encoding='utf-8') as f:
         f.write(lesson_html)
     return lesson_html
 
