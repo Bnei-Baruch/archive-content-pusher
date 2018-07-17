@@ -9,7 +9,7 @@ LOG_FILE="$BASE_DIR/logs/laitman-ru/daily_lesson_$TIMESTAMP.log"
 
 cd ${BASE_DIR} && source bin/activate && ./wp-autopost.py > ${LOG_FILE} 2>&1
 
-WARNINGS="$(egrep -c "level=(warning|error)" ${LOG_FILE})"
+WARNINGS="$(egrep -c "(WARNING|ERROR)" ${LOG_FILE})"
 
 if [ "$WARNINGS" = 0 ];then
         echo "No warnings"
