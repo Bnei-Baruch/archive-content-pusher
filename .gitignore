@@ -5,6 +5,7 @@ include/
 lib/
 lib64
 __pycache__
+venv
 
 pip-selfcheck.json
 pyvenv.cfg
