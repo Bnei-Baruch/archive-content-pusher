@@ -46,4 +46,4 @@ class DailyLesson:
                 # final
                 part['files_{}'.format(lang)] = {'audio': "".join(files_audio), 'video': "".join(files_video)}
 
-        return self._daily_lesson_parts
+        return reversed(self._daily_lesson_parts)  # Should be posted in reversed order by Ira demand :)
