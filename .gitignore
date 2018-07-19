@@ -4,8 +4,10 @@ bin/
 include/
 lib/
 lib64
+__pycache__
 
 pip-selfcheck.json
 pyvenv.cfg
+outp.html
 .env
 *.log
