@@ -114,7 +114,8 @@ def main():
                                     settings.LAITMAN_RU_PASSWORD)
     wp_rest.validate_token()
     today = datetime.datetime.now().strftime('%d.%m.%y')
-    wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish")
+    wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish",
+                        categories="162,224")
 
 
 if __name__ == "__main__":
