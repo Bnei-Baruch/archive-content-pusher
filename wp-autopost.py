@@ -113,7 +113,7 @@ def main():
                                     settings.LAITMAN_RU_USERNAME,
                                     settings.LAITMAN_RU_PASSWORD)
     wp_rest.validate_token()
-    today = datetime.datetime.now().strftime('%d.%m.%y')
+    today = datetime.datetime.now().strftime('%d.%m.%Y')
     wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish",
                         categories="162,224")
 
