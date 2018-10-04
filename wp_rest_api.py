@@ -1,5 +1,4 @@
 import requests
-
 import settings
 
 JWT_ENTRY_POINT = "jwt-auth/v1/token"
@@ -30,7 +29,7 @@ class WpRESTApi:
         return resp.json()
 
     def list_posts(self, **kwargs):
-        resp = self.session.get(self._api_prefix('posts'), **kwargs)
+        resp = self.session.get(self._api_prefix('posts'), params=kwargs)
         resp.raise_for_status()
         return resp.json()
 
@@ -39,3 +38,5 @@ class WpRESTApi:
 
     def _jwt_prefix(self, path):
         return "/".join([self.url, JWT_ENTRY_POINT, path])
+
+

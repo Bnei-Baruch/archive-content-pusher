@@ -2,6 +2,7 @@
 """
     WordPress auto-post script, using JWT auth and wp-rest api
 """
+import argparse
 import datetime
 import random
 import sys
@@ -95,10 +96,18 @@ def lessons_data_to_html(parts):
     return lesson_html
 
 
+def get_args():
+    parser = argparse.ArgumentParser(description='Archive Content Pusher (c) - 2018')
+    parser.add_argument('-z', '--zohar', action="store_true", help="Zohar lesson flag")
+    args = parser.parse_args()
+    return args
+
+
 def main():
     global logger
     logger = Logger().logger
 
+    args = get_args()
     logger.info("Fetching Lesson parts...")
     today = datetime.date.today().strftime('%Y-%m-%d')
     lesson_from_today = daily_lesson.DailyLesson(logger, today, lang='ru')
@@ -114,8 +123,12 @@ def main():
                                     settings.LAITMAN_RU_PASSWORD)
     wp_rest.validate_token()
     today = datetime.datetime.now().strftime('%d.%m.%Y')
-    wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish",
-                        categories="162,224")
+    if not args.zohar:
+        wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish",
+                            categories="162,224")
+    else:
+        wp_rest.create_post(title=f"Урок по Книге Зоар, {today}", content=post_content, status="publish",
+                            categories="162,152,224")
 
 
 if __name__ == "__main__":
