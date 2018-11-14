@@ -1,5 +1,11 @@
 # Archive Content Pusher cron jobs
 
 
-# laitman.ru daily lesson (06:00 am UTC => 08:00 am IST 09:00 am IDT)
-0 6 * * * archive /sites/archive-content-pusher/scripts/laitman-ru_daily_lesson.sh
+# laitman.ru daily lesson (05:00 am UTC => 07:00 am IST 08:00 am IDT)
+0 6 * * 1-5,7 archive /sites/archive-content-pusher/scripts/laitman-ru_daily_lesson.sh
+
+# laitman.ru Saturday lesson (09:00 am UTC => 11:00 am IST 12:00 am IDT)
+0 10 * * 6 archive /sites/archive-content-pusher/scripts/laitman-ru_daily_lesson.sh
+
+# laitman.ru zohar lesson (Monday to Thursday 18:00 am UTC => 20:00 am IST 21:00 am IDT)
+0 18 * * 1-4 archive /sites/archive-content-pusher/scripts/laitman-ru_daily_lesson.sh
