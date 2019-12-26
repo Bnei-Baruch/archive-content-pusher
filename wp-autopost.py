@@ -127,7 +127,7 @@ def main():
         wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish",
                             categories="162,224")
     else:
-        wp_rest.create_post(title=f"Урок по Книге Зоар, {today}", content=post_content, status="publish",
+        wp_rest.create_post(title=f"Вечерний урок, {today}", content=post_content, status="publish",
                             categories="162,152,224")
 
 
