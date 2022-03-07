@@ -19,8 +19,8 @@ class DailyLesson:
         resp = self.session.get(DAILY_LESSON_ENDPOINT, params=dict(language=self.lang))
         resp.raise_for_status()
         data = resp.json()
+        logger.debug(data)
         self._daily_lesson_parts = [lesson for lesson in data['content_units'] if lesson['film_date'] == self.date]
-        logger.debug("Today's daily lessons fetched: {}".format(self._daily_lesson_parts))
 
     def get_parts_with_files(self):
         langs = ['ru', 'he']

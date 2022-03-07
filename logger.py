@@ -6,10 +6,10 @@ class Logger:
         self._logger = logging.getLogger('wp-autpost')
         self._logger.setLevel(logging.DEBUG)
         # create file handler which logs debug messages
-        debug_fh = logging.FileHandler('debug.log')
+        debug_fh = logging.FileHandler('debug.log', 'w', 'utf-8')
         debug_fh.setLevel(logging.DEBUG)
         # create file handler which logs error messages
-        error_fh = logging.FileHandler('error.log')
+        error_fh = logging.FileHandler('error.log', 'w', 'utf-8')
         error_fh.setLevel(logging.ERROR)
         # create console handler with a higher log level
         ch = logging.StreamHandler()
