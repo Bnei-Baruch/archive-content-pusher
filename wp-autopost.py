@@ -112,7 +112,6 @@ def main():
     today = datetime.date.today().strftime('%Y-%m-%d')
     lesson_from_today = daily_lesson.DailyLesson(logger, today, lang='ru')
     parts = lesson_from_today.get_parts_with_files()
-    logger.info("Lesson parts with files: {}".format(" ".join(map(str, parts))))
     logger.info("Processing Lesson parts to HTML...")
     post_content = lessons_data_to_html(parts)
 
