@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3.9
 """
     WordPress auto-post script, using JWT auth and wp-rest api
 """
@@ -120,7 +120,7 @@ def main():
                                     settings.LAITMAN_RU_URL,
                                     settings.LAITMAN_RU_USERNAME,
                                     settings.LAITMAN_RU_PASSWORD)
-    wp_rest.validate_token()
+    # wp_rest.validate_token()
     today = datetime.datetime.now().strftime('%d.%m.%Y')
     if not args.zohar:
         wp_rest.create_post(title=f"Утренний урок {today}", content=post_content, status="publish",
