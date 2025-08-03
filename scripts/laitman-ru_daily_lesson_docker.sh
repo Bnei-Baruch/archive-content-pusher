@@ -21,7 +21,8 @@ if [ "$WARNINGS" = 0 ];then
   exit 0
 fi
 
-(uuencode "${LOG_FILE}" wp-autopost.log;) | mail -s "ERROR: laitman.ru daily lesson" -r "mdb@bbdomain.org" edoshor@gmail.com
+echo "Errors in laitman.ru daily lesson" | mail -s "ERROR: laitman.ru daily lesson" -r "mdb@bbdomain.org" -a ${LOG_FILE} edoshor@gmail.com
+
 cleanup
 exit 1
 

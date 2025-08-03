@@ -12,7 +12,7 @@ ARG laitman_ru_password
 
 # Install essential system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl build-essential gcc \
+    curl build-essential gcc mailutils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -29,6 +29,13 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 WORKDIR /app
 COPY pyproject.toml poetry.lock* ./
 RUN poetry install --no-root --no-interaction --no-ansi
+
+# set up mailutils
+RUN mkdir -p /etc/postfix && touch /etc/postfix/main.cf
+RUN echo "mydomain = bbdomain.org" >> /etc/postfix/main.cf
+RUN echo "myhostname = app.mdb" >> /etc/postfix/main.cf
+RUN echo "myorigin = \$mydomain" >> /etc/postfix/main.cf
+RUN echo "relayhost = [smtp.local]" >> /etc/postfix/main.cf
 
 COPY . .
 
