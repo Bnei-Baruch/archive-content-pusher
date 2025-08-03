@@ -1,0 +1,59 @@
+name: CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select deployment environment'
+        required: true
+        default: 'internal'
+        type: choice
+        options:
+          - internal
+          - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.BBDEPLOYMENT_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.BBDEPLOYMENT_DOCKERHUB_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            bneibaruch/archive_content_pusher:latest
+            bneibaruch/archive_content_pusher:gh_${{github.run_number}}
+
+  deploy-internal:
+    runs-on: [self-hosted, linux, merkaz]
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.environment == 'internal' || github.event.inputs.environment == 'dev')
+    steps:
+      - name: Set deployment variables
+        run: |
+          if [[ "${{ github.event.inputs.environment }}" == "internal" ]]; then
+            echo "SSH_HOST=${{ secrets.MDB_HOST_PRODUCTION }}" >> $GITHUB_ENV
+          else
+            echo "SSH_HOST=${{ secrets.MDB_HOST_STAGING }}" >> $GITHUB_ENV
+          fi
+      
+      - name: Deploy to ${{ github.event.inputs.environment }} via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: root
+          key: ${{ secrets.BBDEPLOYMENT_SSH_PRIVATE_KEY }}
+          script: |
+            cd /root/mdb-docker
+            docker compose pull archive_content_pusher
